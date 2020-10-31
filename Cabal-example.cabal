@@ -62,7 +62,8 @@ executable Cabal-example
   -- Other library packages from which modules are imported.
   build-depends:       
     base >=4.12 && <4.13, 
-    titlecase
+    titlecase,
+    QuickCheck
 
   -- Directories containing source files.
   hs-source-dirs: 
