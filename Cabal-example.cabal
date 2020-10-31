@@ -63,7 +63,10 @@ executable Cabal-example
   build-depends:       
     base >=4.12 && <4.13, 
     titlecase,
-    QuickCheck
+    QuickCheck,
+    stm,
+    parallel,
+    deepseq
 
   -- Directories containing source files.
   hs-source-dirs: 
@@ -72,3 +75,4 @@ executable Cabal-example
 
   -- Base language which the package is written in.
   default-language:    Haskell2010
+  ghc-options: -threaded -rtsopts -eventlog -with-rtsopts=-N -with-rtsopts=-s
