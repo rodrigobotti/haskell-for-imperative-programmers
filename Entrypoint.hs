@@ -1,6 +1,8 @@
 import Control.Monad
 
 import Utils
+import qualified Exercises.ExerciseList as E1
+import qualified Exercises.ExerciseFolding as E2
 
 inRange :: Integer -> Integer -> Integer -> Bool
 inRange min max x = 
@@ -41,17 +43,42 @@ evens2 = filter (\x -> x `mod` 2 == 0)
 map2D :: (a -> b) -> [[a]] -> [[b]]
 map2D = map . map
 
+count :: Eq a => a -> [a] -> Integer
+count e =
+  foldr (\x acc -> if e == x then acc + 1 else acc) 0
+
+myLength :: [a] -> Integer
+myLength = 
+  foldr (const $ (+) 1) 0
+
+myMap :: (a -> b) -> [a] -> [b]
+myMap f = 
+  foldr ((:) . f) []
+
 --
 
 main :: IO ()
 main = 
-   printAll
+  printAll
+    [ "Exercise 2 - Folding"
+    , show $ E2.rev [1..10]
+    , show $ E2.prefixes [1..5]
+    , show $ (E2.foldtrie (\acc x -> [x] ++ acc) [] E2.t)
+    ]
+  >>
+  putStrLn $ show $ mySum2 [1..10]
+  >>
+  printAll
+    [ show $ addTuples2 [(x,y) | x <- [1..3], y <- [1..3]] 
+    , show $ evens2 [1..20] 
+    ]
+   {- printAll
     [ "Exercise 1 - Lists"
     , show $ E1.isAsc [1..10]
     , show $ E1.isAsc [1, 2, 3, 5, 4]
     , show $ E1.myNub [1, 2, 1, 3, 3, 4, 5]
     , show $ E1.myElem 10 [1..5] 
-    ]
+    ] -}
   {- >> 
   printAll
     [ show $ mySum [1..10]
