@@ -1,6 +1,11 @@
 import Control.Monad
 
 import Utils
+import Datatypes.MonadStuff
+import Tests
+import Infinite as I
+import qualified Program as P
+
 import qualified Exercises.ExerciseList as E1
 import qualified Exercises.ExerciseFolding as E2
 
@@ -58,7 +63,38 @@ myMap f =
 --
 
 main :: IO ()
-main = 
+main =
+  printAll
+    [
+      "Advanced Excercises"
+      , show $ E3.cut 3 E3.inv_tup_tree
+      , show $ E3.inorder $ E3.cut 3 E3.inv_tup_tree
+      , show $ E3.inorder $ E3.newTree [4, 1, 2, 3, 9]
+    ] 
+  >> E3.testPropTree
+  >> E3.task
+  >>  
+  printAll
+    [
+      take 5 I.ones
+      , take 5 I.evens
+      , take 5 I.odds
+      , take 50 I.fibs
+    ]
+  >>  
+  printAll 
+    [
+    monadd (Just 1) (Just 2)
+    , monadd Nothing (Just 3)
+    , Nothing >> Just 1
+    ]
+  >>
+  printAll 
+    [
+    safediv 10 5
+    , safediv 1 0
+    ]
+  {- 
   printAll
     [ "Exercise 2 - Folding"
     , show $ E2.rev [1..10]
@@ -72,6 +108,7 @@ main =
     [ show $ addTuples2 [(x,y) | x <- [1..3], y <- [1..3]] 
     , show $ evens2 [1..20] 
     ]
+   -}  
    {- printAll
     [ "Exercise 1 - Lists"
     , show $ E1.isAsc [1..10]
