@@ -5,9 +5,15 @@ import Datatypes.MonadStuff
 import Tests
 import Infinite as I
 import qualified Program as P
+import qualified Datatypes.Exceptions as Ex
+import qualified Concurrency.MVarsAndChans as C1
+import qualified Concurrency.Semaphores as C2
+import qualified Concurrency.STM as C3
+import qualified Parallel as P
 
 import qualified Exercises.ExerciseList as E1
 import qualified Exercises.ExerciseFolding as E2
+import qualified Exercises.ExerciseAdvanced as E3
 
 inRange :: Integer -> Integer -> Integer -> Bool
 inRange min max x = 
@@ -64,6 +70,11 @@ myMap f =
 
 main :: IO ()
 main =
+  P.integralM
+  -- C3.count
+  -- Ex.catching
+  -- P.greet
+  {- 
   printAll
     [
       "Advanced Excercises"
@@ -94,6 +105,7 @@ main =
     safediv 10 5
     , safediv 1 0
     ]
+ -}
   {- 
   printAll
     [ "Exercise 2 - Folding"
